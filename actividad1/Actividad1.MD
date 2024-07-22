@@ -2,6 +2,9 @@
 ### <div align="center">USAC - Facultad de Ingeniería</div>
 ### <div align="center">Sistemas Operativos 1 - Sección A</div>
 ### <div align="center">Segundo Semestre 2024</div>
+___
+
+### <div align="center">Nombre: Julio Alejandro Zaldaña Ríos - Carnet: 202110206</div>
 *<div align="center">Guatemala 21 de julio de 2024</div>*
 ___
 
@@ -82,7 +85,7 @@ Ejemplos:
 3. **IP:** En esencia significa "Protocolo de Internet / Internet Protocol", y es un conjunto de reglas que rigen para el envío de información en una red. En este caso una dirección de IP es única en un dispositivo y sirve para identificación única del mismo en una red.
 
 Tipos:
-- IPv4: Utiliza direcciones de 32 bits en formato decimal 
+- IPv4: Utiliza direcciones de 32 bits en formato decimal. 
 - IPv6: Utiliza direcciones de 128 bits en formato hexadecimal.
 
 <div align="center"><img src="images/imageoip.png" alt="Archivo Lógico" width="300"></div>
