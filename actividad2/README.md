@@ -16,8 +16,13 @@ ___
 <br>
 
 
-1. **Se crea una variable GITHUB_USER**
-La variable GITHUB_USER es igual a mi usuario de github para este ejemplo es *julizaldana*.
+1. **Se crea una variable GITHUB_USER por default**
+La variable GITHUB_USER es igual a mi usuario de github para este ejemplo es *julizaldana*
+
+```bash
+GITHUB_USER=${GITHUB_USER:-"julizaldana"}
+```
+
 2. **Se concatena mi usuario GITHUB_USER con la URL https://api.github.com/users/**
 3. **Se utiliza el comando curl para realizar la solicitud HTTP y guardar la información en un archivo .txt** Se realiza la consulta de la URL, y se obtiene la información de dicha webservice que son los datos de mi usuario de GitHub pero en formato JSON.
 
@@ -43,14 +48,15 @@ USER_ID=$(jq '.id' $file)
 CREATED_AT=$(jq '.created_at' $file)
 ```
 
-5. **Se configura y se utiliza el comando date para almacenarlo en una variable llamada DATE, con el formato YYYY-MM-DD-HH:MM:SS**
+5. **Se configura y se utiliza el comando date para almacenar en una variable llamada DATE, con el formato YYYY-MM-DD y se crea una variable llamada hora con el formato HH:MM:SS**
 
 ```bash
-DATE=$(date +%Y-%m-%d-%H:%M:%S) 
+DATE=$(date +%Y-%m-%d) 
+HORA=$(date +%H:%M:%S)
 ```
 *Recordar que el formato fue construido, y existen muchas variantes aparte de %Y, %m, %d, %H, %M, %S.*
 
-Esa variable DATE, será importante porque con ella se creará una carpeta única en donde se podrá identificar la fecha y la hora en que fue creada.
+Esa variable DATE, será importante porque con ella se creará una carpeta única en donde se podrá identificar mediante la fecha y la variable HORA, ayudará para identificar la hora cuando el mensaje fue enviado.
 
 7. **Se utiliza el comando mkdir para crear la carpeta DATE dentro de /tmp**
 
@@ -67,9 +73,9 @@ archivo_salida="$DIR/saludos.log"
 
 echo "La url es $URL"
 echo "La fecha es $DATE"
-# Se redirige la salida de echo al archivo de salida
-echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT." > "$archivo_salida"
-echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT."'''
+# Se redirige la salida de echo al archivo de salida, y se va concatenando
+echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT. - Hora: $HORA" >> "$archivo_salida"
+echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT. - Hora: $HORA"
 ```
 
 9. **Dar siempre los permisos para que el script sea ejecutado**
@@ -102,17 +108,18 @@ _________
 
 ### **<div align="center">Resultado Final </div>**
 
-Se podrá visualizar en la ruta /tmp; todos las carpetas que se van creando cada 5 minutos, como fue especificado en el crontab. Se puede notar el formato de la fecha y hora implementado de manera correcta.
+Se podrá visualizar en la ruta /tmp; la carpeta que se crea por la fecha. 
 
-![alt text](images/tmp.png)
+![alt text](images/tmp2.png)
 
-Por ejemplo si se ingresa a una carpeta, y se encontrará un archivo llamado saludos.log:
 
-![alt text](images/log.png)
+Por ejemplo si se ingresa a la carpeta y se encontrará un archivo llamado saludos.log:
 
-Dentro de este archivo, se encontrará el resultado de la consulta de la URL que se encuentra en el script.sh
+![alt text](images/log2.png)
 
-![alt text](images/content.png)
+Dentro de este archivo, se encontrarán los resultados de los mensajes que son enviados mediante el script. Clasificados mediante la hora que se va ejecutando según el crontab. (Cada 5 minutos se concatena un mensaje)
+
+![alt text](images/content2.png)
 ______
 
 ### **<div align="center">E-grafía</div>**

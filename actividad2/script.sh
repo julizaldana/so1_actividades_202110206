@@ -3,7 +3,7 @@
 # Nombre de archivo a crear
 file="archivo.txt"
 
-GITHUB_USER="julizaldana"
+GITHUB_USER=${GITHUB_USER:-"julizaldana"}
 URL=https://api.github.com/users/
 # Concatenar el user de github en la URL con +=
 URL+="$GITHUB_USER"
@@ -15,8 +15,9 @@ curl -s "$URL" -o $file
 USER_ID=$(jq '.id' $file)
 CREATED_AT=$(jq '.created_at' $file)
 
-# Se almacena el comando date en la variable DATE, con el formato de YYYY-MM-DD-HH:MM:SS
-DATE=$(date +%Y-%m-%d-%H:%M:%S) 
+# Se almacena el comando date en la variable DATE, con el formato de YYYY-MM-DD y se crea la variable HORA: HH:MM:SS
+DATE=$(date +%Y-%m-%d) 
+HORA=$(date +%H:%M:%S)
 
 # Se crea el directorio con mkdir y la flag -p (parents) 
 DIR="/tmp/$DATE"
@@ -28,9 +29,9 @@ archivo_salida="$DIR/saludos.log"
 
 echo "La url es $URL"
 echo "La fecha es $DATE"
-# Se redirige la salida de echo al archivo de salida
-echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT." > "$archivo_salida"
-echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT."
+# Se redirige la salida de echo al archivo de salida, y se va concatenando
+echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT. - Hora: $HORA" >> "$archivo_salida"
+echo "Hola, $GITHUB_USER. User ID: $USER_ID. Cuenta fue creada el: $CREATED_AT. - Hora: $HORA"
 
 
 # Y para ejecutar el script cada 5 minutos, se realizó lo siguiente.
