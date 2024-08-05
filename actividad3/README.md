@@ -33,9 +33,9 @@ sudo adduser usuario3
 
 Las contraseñas que tienen son:
 
-usuario1: *pass=usuario1*
-usuario2: *pass=usuario2*
-usuario3: *pass=usuario3*
+- usuario1: *pass=usuario1*
+- usuario2: *pass=usuario2*
+- usuario3: *pass=usuario3*
 
 2. **A cada usuario se le crea una nueva contraseña**
 
@@ -48,9 +48,9 @@ sudo passwd usuario3
 Se le cambia la contraseña a cada usuario:
 NOTA: Puede ser cualquier contraseña, con fines de ejemplo se asignan las siguientes contraseñas.
 
-usuario1: *pass=sopes1user1*
-usuario2: *pass=sopes1user2*
-usuario3: *pass=sopes1user3*
+- usuario1: *pass=sopes1user1*
+- usuario2: *pass=sopes1user2*
+- usuario3: *pass=sopes1user3*
 
 <div align="center"><img src="images/passwd.png" width="450"></div>
 
@@ -83,7 +83,9 @@ Después de ejecutar el comando userdel; se puede llegar a corroborar con id usu
 
 <div align="center"><img src="images/user3del.png" width="450"></div>
 
+_______________
 
+<br>
 
 #### **Parte 2: Gestión de Grupos**
 
@@ -131,6 +133,10 @@ Para eliminar el grupo2, se debe de utilizar el comando sudo groupdel
 sudo groupdel grupo2
 ```
 
+_______________
+
+<br>
+
 #### **Parte 3: Gestión de Permisos**
 
 1. **Creación de Archivos y Directorios:**
@@ -160,7 +166,8 @@ echo "Este es el contenido del archivo 2 de la actividad 3 de Sistemas Operativo
 
 <div align="center"><img src="images/usuario1.png" width="660"></div>
 
-
+<br>
+<br>
 
 2. **Se realiza una verificación de los permisos en los archivos y el directorio creado:**
 
@@ -177,6 +184,13 @@ Se pueden verificar los siguientes permisos para los archivos y el directorio1.
 
 <div align="center"><img src="images/permisos.png" width="600"></div>
 
+NOTA: Tomar siempre en cuenta la notación:
+
+<div align="center"><img src="images/notacion.png" width="400"></div>
+
+<br>
+<br>
+
 3. **Modificar Permisos usando chmod con Modo Numérico**
 
 Se modifica los permisos para el archivo1.txt, para que el usuario1 pueda leer y escribir y los grupos puedan leer.
@@ -186,15 +200,18 @@ Se debe de recordar y tener en cuenta la notación numérica/decimal/octal:
 <div align="center"><img src="images/octal.png" width="400"></div>
 
 
-(rw-) -> 6 - U
-(r--) -> 4 - G
-(nada) -> 0  - O
+- (rw-) -> 6 - U
+- (r--) -> 4 - G
+- (nada) -> 0  - O
 
 Habiendo definido el permiso en modo numérico; el comando quedaría:
 
 ```bash
 chmod 640 /home/usuario1/archivo1.txt
 ```
+
+<br>
+<br>
 
 4. **Modificar Permisos usando chmod con Modo Simbólico**
 
@@ -206,10 +223,12 @@ chmod u+x /home/usuario1/directorio1/archivo2.txt
 
 Nota:
 Recordar las notaciones en el modo simbólico.
-(x)=execute
-(r)=read
-(w)=write
+- (x)=execute
+- (r)=read
+- (w)=write
 
+<br>
+<br>
 
 5. **Se cambia el grupo propietario:**
 
@@ -220,13 +239,16 @@ Se cambia el grupo propietario del archivo2.txt a grupo1 con el comando:
 sudo chown :grupo1 /home/usuario1/directorio1/archivo2.txt
 ```
 
+<br>
+<br>
+
 6. **Configuración de permisos en directorio**
 
 Se realiza la configuración del /directorio1 con el modo numérico.
 
-(rwx) -> 7 -> U
-(r--) -> 4 -> G
-nada -> 0 -> O
+- (rwx) -> 7 -> U
+- (r--) -> 4 -> G
+- nada -> 0 -> O
 
 Se le añaden los permisos para que el propietario (usuario) pueda solo él entrar al /directorio1. Y para que en el grupo se pueda leer de igual manera.
 
@@ -235,7 +257,8 @@ Se utiliza el comando:
 ```bash
 chmod 740 /home/usuario1/directorio1
 ```
-
+<br>
+<br>
 
 7. **Comprobación de acceso**
 
@@ -266,8 +289,14 @@ cat /home/usuario1/directorio1/archivo2.txt
 
 <div align="center"><img src="images/permisod2.png" width="600"></div>
 
-
 Nota: Debido a los permisos establecidos, el usuario2 no puede leer el archivo1.txt y tampoco acceder al contenido de directorio1 (archivo2.txt).
+
+Mientras que sí se intenta acceder a los archivos con el usuario1, ahora si se podrá visualizar el contenido, por los permisos configurados
+
+<div align="center"><img src="images/user1permisos.png" width="600"></div>
+
+<br>
+<br>
 
 8. **Verificación Final**
 
@@ -282,6 +311,34 @@ ls -l /home/usuario1/directorio1/archivo2.txt
 Los permisos finales quedarían de la siguiente forma:
 <div align="center"><img src="images/permisosf.png" width="600"></div>
 
+Se verificaron los permisos y como se puede observar, son iguales a la forma en la que se detalló anteriormente con el comando `chown`.
+
+* archivo1.txt = 640 = rw- r-- 
+* /directorio1 = 740 = rwx r--
+* /directorio1/archivo2.txt = rwxrw r-- = execute
+
+
+______
+
+### **<div align="center">Reflexión Final</div>**
+
+* **¿Por qué es importante gestionar correctamente los usuarios y permisos en un sistema operativo?**
+
+Gestionar correctamente a los usuarios y permisos en un sistema operativo es sumamente importante para lograr un buen nivel de seguridad, tambien útil para mantener un control de acceso ordenado a archivos y directorios del sistema y para mantener los permisos necesarios de los usuarios y grupos respectivos para que ejecuten sus roles y así se logre alcanzar la eficiencia en el sistema.
+
+Esto quiere decir que al realizar una buena gestión de usuarios, grupos y permisos se minimizan los riesgos asociados a accesos no autorizados, posibles incovenientes entre usuarios y grupos, problemas externos etc.
+
+* **¿Qué otros comandos o técnicas conocen para gestionar permisos en Linux?**
+
+Comandos:
+
+- who: Para saber la lista de usuarios logueados.
+- chgrp: Cambiar el grupo propietario de un archivo o directorio.
+
+Técnicas:
+- Configurar *sudoers* correctamente: Utilizar el archivo /etc/sudoers para definir qué usuarios pueden ejecutar comandos con privilegios de sudo.
+
+
 ______
 
 ### **<div align="center">E-grafía</div>**
@@ -290,4 +347,6 @@ ______
 
 * https://developnsolve.com/removing-users-and-home-directories-on-linux
 * https://www.strongdm.com/blog/add-user-to-linux-group
-
+* https://www.hostinger.es/tutoriales/cambiar-permisos-y-propietarios-linux-linea-de-comandos/
+* https://linuxhandbook.com/user-management-commands/
+* https://www.pluralsight.com/blog/it-ops/linux-file-permissions
