@@ -42,6 +42,8 @@ O sino instalando la extensión de Kubernetes de VS Code:
 ![alt text](./images/k8s.png)
 ___
 
+### **<div align="center">Web Server - Nginx con Minikube</div>**
+
 ***Desplegar un contenedor de algun web server, apache o nginx por ejemplo, en el Cluster de K8s Local.***
 
 Para acceder al deployment y servicio, se utiliza el archivo: 
@@ -89,9 +91,11 @@ Muestra de web server:
 
 ___
 
+### **<div align="center">Nodos Masters y Workers</div>**
+
 **¿En un ambiente local de Kubernetes existen los nodos masters y workers, como es que esto funciona?**
 
-En un ambiente local de Kubernetes, como en este caso se utilizó Minikube. Todos los componentes del clúster (tanto el nodo master como el nodo worker) se ejecutan en una sola máquina virtual (VM) o en un único nodo de forma local. 
+En un ambiente local de Kubernetes, como en este caso se utilizó Minikube. Todos los componentes del clúster (tanto el nodo master como el nodo worker) se ejecutan en una sola máquina virtual (VM) (contenedor de Docker) o en un único nodo de forma local. 
 
 En un entorno local con Minikube, el concepto de "nodos" existe, pero todos los componentes están comprimidos en una única VM que simula tanto el nodo master como el worker:
 
